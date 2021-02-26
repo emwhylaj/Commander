@@ -1,3 +1,4 @@
+using System;
 using Commander.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,7 +16,7 @@ namespace Commander
         {
             Configuration = configuration;
         }
-
+  
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -25,6 +26,7 @@ namespace Commander
             services.AddControllers();
             //services.AddScoped<ICommanderRepo, MockCommanderRepo>()
             //    ;
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICommanderRepo, SqlCommanderRepo>()
                 ;
             services.AddSwaggerGen(c =>
